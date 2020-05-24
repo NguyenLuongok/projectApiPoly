@@ -33,7 +33,8 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         List<UserDto> userDtos = new ArrayList<>();
         for (User user : users){
-            userDtos.add(new UserDto(user.getUserId(),user.getUsername(),user.getEmail(),user.getPassword(),user.getAddress(),user.getPhoneNumber(),user.getFacility().getFacilityId(),user.getFacility().getFacilityName()));
+            Facility facility = facilityRepository.findById(user.getFacility().getFacilityId()).get();
+            userDtos.add(new UserDto(user.getUserId(),user.getUsername(),user.getEmail(),user.getPassword(),user.getAddress(),user.getPhoneNumber(),facility.getFacilityId(),facility.getFacilityName()));
         }
         Type listType = new TypeToken<List<UserDto>>(){}.getType();
         List<UserDto> userDtoList = modelMapper.map(userDtos,listType);

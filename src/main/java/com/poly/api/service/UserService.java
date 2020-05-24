@@ -1,7 +1,6 @@
 package com.poly.api.service;
 
 import com.poly.api.dto.UserDto;
-import com.poly.api.entities.User;
 
 import java.util.List;
 

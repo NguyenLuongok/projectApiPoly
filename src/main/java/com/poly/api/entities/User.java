@@ -21,8 +21,8 @@ public class User {
     private String phoneNumber;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @OneToOne
+    @JoinColumn(name = "facilityId")
     private Facility facility;
 
     public User() {

@@ -25,6 +25,7 @@ public class Facility {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
     private Set<Campaigndetail> campaigndetails = new HashSet<Campaigndetail>(0);
 
+
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
 //    private Set<Campaign> campaigns = new HashSet<Campaign>(0);
 
