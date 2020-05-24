@@ -23,7 +23,8 @@ public class DesiciondetailServiceImpl implements DesicionDetailService {
 
     @Override
     public List<DesiciondetailDto> findAll() {
-//        List<Desiciondetail> desiciondetails =
+        List<Desiciondetail> desiciondetails = desiciondetailRepository.findAll();
+//        List<DesiciondetailDto> desiciondetailDtos =
         return null;
     }
 
