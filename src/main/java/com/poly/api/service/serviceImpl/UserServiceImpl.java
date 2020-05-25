@@ -11,8 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.reflect.Type;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,15 +53,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto save(UserDto userDto) {
+    public UserDto save(@RequestBody UserDto userDto) {
         Facility facility = facilityRepository.findById(userDto.getFacilityId()).get();
-        User user = modelMapper.map(new User(userDto.getUsername(),userDto.getEmail(),userDto.getPassword(),userDto.getAddress(),userDto.getPhoneNumber(),facility),User.class);
-        userRepository.save(user);
+        System.out.println(facility.getFacilityId());
+        if(facility != null){
+            User user = modelMapper.map(new User(userDto.getUsername(),userDto.getEmail(),userDto.getPassword(),userDto.getAddress(),userDto.getPhoneNumber(),facility),User.class);
+            userRepository.save(user);
+        }
         return userDto;
     }
 
     @Override
-    public UserDto update(UserDto userDto) {
+    public UserDto update(@RequestBody UserDto userDto) {
         Facility facility = facilityRepository.findById(userDto.getFacilityId()).get();
         User user = modelMapper.map(new User(userDto.getUserId(),userDto.getUsername(),userDto.getEmail(),userDto.getPassword(),userDto.getAddress(),userDto.getPhoneNumber(),facility),User.class);
         userRepository.save(user);

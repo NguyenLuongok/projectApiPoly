@@ -2,12 +2,9 @@ package com.poly.api.controller;
 
 
 import com.poly.api.dto.UserDto;
-import com.poly.api.entities.User;
 import com.poly.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +15,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/findAll",produces = "application/json")
+    @GetMapping(produces = "application/json")
     public List<UserDto> getAll(){
         return userService.findAll();
+    }
+
+    @GetMapping(value = "/{id}",produces = "application/json")
+    public UserDto getById(@PathVariable("id") int id){
+        return userService.findById(id);
+    }
+
+    @PostMapping(produces = "application/json")
+    public UserDto save(@RequestBody UserDto userDto){
+        return userService.save(userDto);
+    }
+
+    @PutMapping(produces = "application/json")
+    public UserDto update(@RequestBody UserDto userDto){
+        return userService.update(userDto);
     }
 }
